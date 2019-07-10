@@ -1,0 +1,7 @@
+2019/07/04 22:09:23 [emerg] 1#1: unknown directive "prod_url" in /etc/nginx/conf.d/site.conf:4
+2019/07/04 22:09:52 [emerg] 1#1: unknown directive "prod_url" in /etc/nginx/conf.d/site.conf:4
+2019/07/09 23:41:08 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2019/07/09 23:43:41 [error] 6#6: *1 rewrite or internal redirection cycle while internally redirecting to "/index.php", client: 172.18.0.1, server: teste.com, request: "GET /favicon.ico HTTP/1.1", host: "teste.com", referrer: "http://teste.com/"
+2019/07/09 23:43:50 [error] 6#6: *2 rewrite or internal redirection cycle while internally redirecting to "/index.php", client: 172.18.0.1, server: teste.com, request: "GET /favicon.ico HTTP/1.1", host: "teste.com", referrer: "http://teste.com/phpinfo.php"
+2019/07/10 00:15:05 [emerg] 1#1: host not found in upstream "php-5" in /etc/nginx/conf.d/site.conf:42
+2019/07/10 00:15:50 [error] 6#6: *1 rewrite or internal redirection cycle while internally redirecting to "/index.php", client: 172.18.0.1, server: php7.teste.com, request: "GET /favicon.ico HTTP/1.1", host: "php7.teste.com", referrer: "http://php7.teste.com/phpinfo.php"

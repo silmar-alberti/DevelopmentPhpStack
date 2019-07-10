@@ -1,0 +1,21 @@
+version: '3.3'
+
+services:
+    web:
+        image: nginx:latest
+        ports:
+          - "80:80"
+        volumes:
+          - ../src:/code
+          - ./site.conf:/etc/nginx/conf.d/site.conf
+          - ./log:/var/log/nginx
+        links:
+          - php-7
+          # - php-5
+    php-7:
+      image: php:7.3-fpm
+      # build:
+      #      context: ./ 
+      #      dockerfile: ./DockefilePhp
+      volumes:
+        - ../src:/code
