@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+    apache-php5:
+        image: silmaralberti/php:5.6-apache-dev
+        restart: always
+        ports:
+            - 80:80
+            # - 9000:9000
+        volumes:
+            - /var/www:/var/www
+            - ./php56-sites-enabled:/etc/apache2/sites-enabled
+    
+    apache-php7:
+        image: silmaralberti/php:7.2-apache-dev
+        restart: always
+        ports:
+            - 8070:80
+            # - 9001:9000
+        volumes:
+            - /var/www:/var/www
+            - ./php72-sites-enabled:/etc/apache2/sites-enabled
