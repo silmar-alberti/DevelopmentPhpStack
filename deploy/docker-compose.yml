@@ -19,6 +19,6 @@ services:
             - 8070:80
         volumes:
             - /var/www:/var/www
-            - ./php72-sites-enabled:/etc/apache2/sites-enable
+            - ./php72-sites-enabled:/etc/apache2/sites-enabled
         environment:
             - HOST_DOCKER_INTERNAL=${HOST_DOCKER_INTERNAL}

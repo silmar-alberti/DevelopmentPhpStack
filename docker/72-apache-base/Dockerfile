@@ -18,7 +18,8 @@ RUN apt-get update -y && \
         gd \
         pdo_mysql && \
     pecl install timezonedb igbinary redis && \
-    docker-php-ext-enable timezonedb igbinary redis 
+    docker-php-ext-enable timezonedb igbinary redis && \
+    a2enmod rewrite
 
 COPY ./execution.ini /usr/local/etc/php/conf.d/execution.ini
 COPY ./timezone.ini /usr/local/etc/php/conf.d/timezone.ini
