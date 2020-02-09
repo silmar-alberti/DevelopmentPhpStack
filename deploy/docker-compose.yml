@@ -6,17 +6,19 @@ services:
         restart: always
         ports:
             - 80:80
-            # - 9000:9000
         volumes:
             - /var/www:/var/www
             - ./php56-sites-enabled:/etc/apache2/sites-enabled
-    
+        environment:
+            - HOST_DOCKER_INTERNAL=${HOST_DOCKER_INTERNAL}
+
     apache-php7:
         image: silmaralberti/php:7.2-apache-dev
         restart: always
         ports:
             - 8070:80
-            # - 9001:9000
         volumes:
             - /var/www:/var/www
-            - ./php72-sites-enabled:/etc/apache2/sites-enabled
+            - ./php72-sites-enabled:/etc/apache2/sites-enable
+        environment:
+            - HOST_DOCKER_INTERNAL=${HOST_DOCKER_INTERNAL}
