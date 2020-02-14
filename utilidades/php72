@@ -1,6 +1,8 @@
-docker run -it --rm --name "php72-$1" \
-  -v "$PWD":/usr/src/myapp \
-  -w /usr/src/myapp \
+docker run -it --rm --name "php72-$$" \
+  -v "$PWD":/var/www/$(basename $PWD) \
+  -w /var/www/$(basename $PWD) \
   -e HOST_DOCKER_INTERNAL=$(hostname -I | awk '{print $1}') \
+  -e XDEBUG_CONFIG="remote_enable=1 remote_mode=req remote_port=9000 remote_host=host.docker.internal remote_connect_back=0" \
+  -e XDEBUG_SESSION_START="start" \
   --network "host" \
   silmaralberti/php:7.2-apache-dev php "$@"
