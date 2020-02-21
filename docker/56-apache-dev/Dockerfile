@@ -4,7 +4,8 @@ COPY ./entrypoint.sh /usr/local/bin/entrypoint
 
 RUN pecl install xdebug-2.5.5 && \
     docker-php-ext-enable xdebug && \
-    chmod +x /usr/local/bin/entrypoint
+    chmod +x /usr/local/bin/entrypoint && \
+    mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
 COPY ./20-xdebug.ini /usr/local/etc/php/conf.d/20-xdebug.ini
 
