@@ -7,6 +7,7 @@ services:
         ports:
             - 80
         volumes:
+            - /tmp/profiler:/tmp/profiler
             - /var/www:/var/www
             - ./php56-sites-enabled:/etc/apache2/sites-enabled
             - ./custom.ini:/usr/local/etc/php/conf.d/custom.ini
@@ -22,6 +23,7 @@ services:
         ports:
             - 80
         volumes:
+            - /tmp/profiler:/tmp/profiler
             - /var/www:/var/www
             - ./php72-sites-enabled:/etc/apache2/sites-enabled
             - ./custom.ini:/usr/local/etc/php/conf.d/custom.ini
