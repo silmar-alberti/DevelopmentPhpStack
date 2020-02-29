@@ -75,7 +75,11 @@ ___
  - This project also try abstract local php tools how commands: `php56`, `php72`, `composer` and `kCacheGrid`(xdebug profile analiser). 
  see command files on `./utils` folder
 
-
+___
+### Used repositories 
+- [php](https://hub.docker.com/r/_/php)
+- [jwilder/nginx-proxy](https://hub.docker.com/r/jwilder/nginx-proxy/)
+- [quetzacoalt/kcachegrind](https://hub.docker.com/r/quetzacoalt/kcachegrind)
 
 
 

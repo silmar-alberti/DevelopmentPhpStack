@@ -23,8 +23,8 @@ RUN apt-get update -y && \
     # cleanup
     && docker-php-source delete
 
-RUN pecl install timezonedb && \
-    docker-php-ext-enable timezonedb && \
+RUN pecl install timezonedb apcu-4.0.11 && \
+    docker-php-ext-enable timezonedb apcu && \
     docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install \
         zip \
