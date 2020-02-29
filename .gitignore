@@ -1,3 +1,4 @@
 /deploy/*sites-enabled/**
 !\.gitKeep
 /deploy/custom.ini
+/deploy/.env
