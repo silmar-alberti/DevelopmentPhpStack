@@ -9,7 +9,7 @@ ENV EXT_IGBINARY_VERSION=2.0.6
 RUN a2enmod rewrite
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install -y libxml2-dev libpng-dev zlib1g-dev zip && \
+    apt-get install -y libxml2-dev libpng-dev zlib1g-dev zip libzip-dev && \
     docker-php-source extract \
     # igbinary
     && mkdir -p /usr/src/php/ext/igbinary \
@@ -25,6 +25,7 @@ RUN apt-get update -y && \
 
 RUN pecl install timezonedb && \
     docker-php-ext-enable timezonedb && \
+    docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install \
         zip \
         soap \
