@@ -13,3 +13,6 @@ services:
   dev7:
     build: ./72-apache-dev
     image: silmaralberti/php:7.2-apache-dev
+  prod7:
+    build: ./72-apache-prod
+    image: silmaralberti/php:7.2-apache-prod
