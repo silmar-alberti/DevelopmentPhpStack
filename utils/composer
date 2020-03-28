@@ -1,7 +1,8 @@
 #!/bin/bash
-
+name='composer-'$(date | md5sum | awk '{print $1}')
 eval $(ssh-agent); \
   docker run --rm --interactive --tty \
+  --name $name \
   --volume $PWD:/app \
   --volume $HOME:$HOME \
   --volume $SSH_AUTH_SOCK:/ssh-auth.sock \
@@ -9,4 +10,4 @@ eval $(ssh-agent); \
   --volume /etc/group:/etc/group:ro \
   --env SSH_AUTH_SOCK=/ssh-auth.sock \
   --user $(id -u):$(id -g) \
-  composer "$@" --ignore-platform-reqs
+  composer "$@" 

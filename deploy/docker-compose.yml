@@ -3,7 +3,7 @@ version: "3"
 services:
     apache-php5:
         image: silmaralberti/php:5.6-apache-dev
-        restart: always
+        restart: unless-stopped
         ports:
             - 80
         volumes:
@@ -19,7 +19,7 @@ services:
 
     apache-php7:
         image: silmaralberti/php:7.2-apache-dev
-        restart: always
+        restart: unless-stopped
         ports:
             - 80
         volumes:
