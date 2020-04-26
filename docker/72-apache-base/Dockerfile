@@ -23,5 +23,5 @@ RUN apt-get update -y && \
     docker-php-ext-enable timezonedb igbinary redis apcu && \
     a2enmod rewrite
 
-COPY ./execution.ini /usr/local/etc/php/conf.d/execution.ini
-COPY ./timezone.ini /usr/local/etc/php/conf.d/timezone.ini
+COPY ./settings/execution.ini /usr/local/etc/php/conf.d/execution.ini
+COPY ./settings/timezone.ini /usr/local/etc/php/conf.d/timezone.ini
