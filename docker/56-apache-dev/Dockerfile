@@ -2,6 +2,10 @@ FROM silmaralberti/php:5.6-apache-base
 
 COPY ./settings/entrypoint.sh /usr/local/bin/entrypoint
 
+ENV TINI_VERSION v0.19.0
+ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
+RUN chmod +x /tini
+
 RUN pecl install xdebug-2.5.5 && \
     docker-php-ext-enable xdebug && \
     chmod +x /usr/local/bin/entrypoint && \
@@ -9,5 +13,5 @@ RUN pecl install xdebug-2.5.5 && \
 
 COPY ./settings/20-xdebug.ini /usr/local/etc/php/conf.d/20-xdebug.ini
 
-ENTRYPOINT ["entrypoint"]
-CMD ["apache2-foreground"]
+ENTRYPOINT ["/tini", "--"]
+CMD ["entrypoint", "apache2-foreground"]

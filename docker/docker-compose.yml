@@ -1,12 +1,12 @@
 version: '3.3'
 
 services:
-  base:
+  base5:
     build: 
       context: .
       dockerfile: ./56-apache-base/Dockerfile
     image: silmaralberti/php:5.6-apache-base
-  dev:
+  dev5:
     build: 
       context: .
       dockerfile: ./56-apache-dev/Dockerfile
