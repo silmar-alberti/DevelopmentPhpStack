@@ -8,6 +8,8 @@ ___
 - PHP 7.2 apache environment
 - PHP 5.6 apache dev environment (debug and profile tools)
 - PHP 7.2 apache dev environment (debug and profile tools)
+- PHP 7.2 apache prod environment
+- PHP 7.2 apache with imagick
 
 ### Dependencies
  - [Docker](https://docs.docker.com/install/) 
