@@ -33,5 +33,5 @@ RUN pecl install timezonedb apcu-4.0.11 && \
         gd \
         pdo_mysql 
 
-COPY ./execution.ini /usr/local/etc/php/conf.d/execution.ini
-COPY ./timezone.ini /usr/local/etc/php/conf.d/timezone.ini
+COPY ./settings/execution.ini /usr/local/etc/php/conf.d/execution.ini
+COPY ./settings/timezone.ini /usr/local/etc/php/conf.d/timezone.ini
