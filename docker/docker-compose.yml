@@ -16,3 +16,9 @@ services:
   prod7:
     build: ./72-apache-prod
     image: silmaralberti/php:7.2-apache-prod
+  imagick7:
+    build: 
+      context: .
+      dockerfile: ./72-apache-imagick/Dockerfile
+    image: silmaralberti/php:7.2-apache-imagick
+
