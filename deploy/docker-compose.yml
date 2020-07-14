@@ -27,7 +27,7 @@ services:
             - /tmp/profiler:/tmp/profiler
             - /var/www:/var/www
             - ./php72-sites-enabled:/etc/apache2/sites-enabled
-            - ./customdev.ini:/usr/local/etc/php/conf.d/zz-custom.ini
+            - ./custom-dev.ini:/usr/local/etc/php/conf.d/zz-custom.ini
         environment:
             - VIRTUAL_HOST=*.php7.localhost.com
             - VIRTUAL_PORT=80
@@ -43,7 +43,7 @@ services:
             - /tmp/profiler:/tmp/profiler
             - /var/www:/var/www
             - ./php72-sites-enabled:/etc/apache2/sites-enabled
-            - ./customdev.ini:/usr/local/etc/php/conf.d/zz-custom.ini
+            - ./custom-dev.ini:/usr/local/etc/php/conf.d/zz-custom.ini
         environment:
             - VIRTUAL_HOST=*.php74.localhost.com
             - VIRTUAL_PORT=80

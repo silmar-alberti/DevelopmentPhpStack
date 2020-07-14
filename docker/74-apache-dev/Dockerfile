@@ -1,4 +1,4 @@
-FROM silmaralberti/php:7.2-apache-base
+FROM silmaralberti/php:7.4-apache-base
 
 ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini

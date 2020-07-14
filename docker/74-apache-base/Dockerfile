@@ -12,15 +12,15 @@ RUN apt-get update -y && \
         libpng-dev \
         && \
     apt-get clean && \
-    docker-php-ext-configure zip --with-libzip && \
+    docker-php-ext-configure zip && \
     docker-php-ext-install \
         zip \
         soap \
         mysqli \
         gd \
         pdo_mysql && \
-    pecl install timezonedb igbinary redis apcu apcu_bc && \
-    docker-php-ext-enable timezonedb igbinary redis apcu && \
+    pecl install timezonedb igbinary apcu apcu_bc redis && \
+    docker-php-ext-enable timezonedb igbinary apcu redis && \
     a2enmod rewrite
 
 COPY ./settings/execution.ini /usr/local/etc/php/conf.d/execution.ini

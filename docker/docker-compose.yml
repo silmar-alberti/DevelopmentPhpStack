@@ -21,6 +21,16 @@ services:
       context: .
       dockerfile: ./72-apache-dev/Dockerfile
     image: silmaralberti/php:7.2-apache-dev
+  base74:
+    build: 
+      context: .
+      dockerfile: ./74-apache-base/Dockerfile
+    image: silmaralberti/php:7.4-apache-base
+  dev74:
+    build: 
+      context: .
+      dockerfile: ./74-apache-dev/Dockerfile
+    image: silmaralberti/php:7.4-apache-dev
   prod7:
     build: 
       context: .
