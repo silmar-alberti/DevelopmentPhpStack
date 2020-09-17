@@ -1,0 +1,4 @@
+#!/bin/bash
+
+export XDEBUG_CONFIG="" 
+export XDEBUG_SESSION_START="" 
