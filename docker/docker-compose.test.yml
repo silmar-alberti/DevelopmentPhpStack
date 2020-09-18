@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  dev5:
+    image: silmaralberti/php:5.6-apache-dev
+    entrypoint: testDeps
+  dev7:
+    image: silmaralberti/php:7.2-apache-dev
+    entrypoint: testDeps
+  dev74:
+    image: silmaralberti/php:7.4-apache-dev
+    entrypoint: testDeps

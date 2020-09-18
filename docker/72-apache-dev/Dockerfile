@@ -2,7 +2,9 @@ FROM silmaralberti/php:7.2-apache-base
 
 ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
+COPY ./scripts/bin/* /usr/local/bin/
+
+RUN chmod +x /tini && chmod +x /usr/local/bin/*
 
 COPY ./settings/entrypoint.sh /usr/local/bin/entrypoint
 

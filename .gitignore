@@ -2,3 +2,4 @@
 !\.gitKeep
 /deploy/custom*.ini
 /deploy/.env
+/.vscode/

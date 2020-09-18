@@ -4,7 +4,9 @@ COPY ./settings/entrypoint.sh /usr/local/bin/entrypoint
 
 ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
-RUN chmod +x /tini
+COPY ./scripts/bin/* /usr/local/bin/
+
+RUN chmod +x /tini && chmod +x /usr/local/bin/*
 
 RUN pecl install xdebug-2.5.5 && \
     docker-php-ext-enable xdebug && \
