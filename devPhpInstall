@@ -1,0 +1,33 @@
+#! /bin/bash
+set -e 
+
+relativeProjectFolder=$(dirname $0)
+projectFolder=$(realpath $relativeProjectFolder)
+
+INSTALL_DIR="/usr/local/bin/"
+
+filesToInstall=(
+    'composer'
+    'kcacheGrid'
+    'php56'
+    'php72'
+)
+
+for file in ${filesToInstall[@]}
+do
+    originFilePath="${projectFolder}/utils/$file"
+    destFilePath="${INSTALL_DIR}${file}"
+
+    echo "${destFilePath}   ---->    ${originFilePath}"
+    ln -sf "${originFilePath}" "${destFilePath}"
+done
+
+ln -sf "${INSTALL_DIR}/php72" "${INSTALL_DIR}/php"
+
+echo "
+--------------------------------------------------
+--------------------------------------------------
+--------------------------------------------------
+Install success
+
+"
