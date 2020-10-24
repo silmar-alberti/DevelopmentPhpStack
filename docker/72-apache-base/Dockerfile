@@ -4,6 +4,8 @@ ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 ENV APPLICATION_ENV 'production'
 ENV TZ 'America/Sao_Paulo' 
 
+COPY ./scripts/bin/* /usr/local/bin/
+
 RUN apt-get update -y && \
     apt-get install -y \ 
         zlib1g-dev \
@@ -15,13 +17,15 @@ RUN apt-get update -y && \
     docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install \
         zip \
+        opcache \
         soap \
         mysqli \
         gd \
         pdo_mysql && \
     pecl install timezonedb igbinary redis apcu apcu_bc && \
     docker-php-ext-enable timezonedb igbinary redis apcu && \
-    a2enmod rewrite
+    a2enmod rewrite && \
+    chmod +x /usr/local/bin/*
 
-COPY ./settings/execution.ini /usr/local/etc/php/conf.d/execution.ini
-COPY ./settings/timezone.ini /usr/local/etc/php/conf.d/timezone.ini
+COPY ./settings/z-execution.ini /usr/local/etc/php/conf.d/z-execution.ini
+COPY ./settings/z-timezone.ini /usr/local/etc/php/conf.d/z-timezone.ini

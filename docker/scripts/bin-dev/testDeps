@@ -33,6 +33,7 @@ requiredModules=(
     'SPL'
     'sqlite3'
     'timezonedb'
+    'xdebug'
     'xml'
     'xmlreader'
     'xmlwriter'
@@ -43,6 +44,7 @@ requiredModules=(
 
 echo "loading modules ..."
 phpModules=$(php -m)
+
 IFS=""
 for module in ${requiredModules[@]}; do
     if ! grep -ie "^${module}$" <<< $phpModules > /dev/null

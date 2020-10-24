@@ -13,7 +13,8 @@ RUN pecl install xdebug && \
     chmod +x /usr/local/bin/entrypoint && \
     mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
-COPY ./settings/20-xdebug.ini /usr/local/etc/php/conf.d/20-xdebug.ini
+COPY ./settings/z-xdebug.ini /usr/local/etc/php/conf.d/z-xdebug.ini
+COPY ./settings/z-opcache-dev.ini /usr/local/etc/php/conf.d/z-opcache.ini
 
 ENTRYPOINT ["/tini", "--"]
 CMD ["entrypoint", "apache2-foreground"]

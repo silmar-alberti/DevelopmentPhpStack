@@ -6,6 +6,7 @@ ENV TZ 'America/Sao_Paulo'
 ENV EXT_REDIS_VERSION=2.2.8 
 ENV EXT_IGBINARY_VERSION=2.0.6
 
+COPY ./scripts/bin/* /usr/local/bin/
 RUN a2enmod rewrite
 RUN apt-get update -y && \
     apt-get upgrade -y && \
@@ -28,10 +29,12 @@ RUN pecl install timezonedb apcu-4.0.11 && \
     docker-php-ext-configure zip --with-libzip && \
     docker-php-ext-install \
         zip \
+        opcache \
         soap \
         mysqli \
         gd \
-        pdo_mysql 
+        pdo_mysql && \
+    chmod +x /usr/local/bin/*
 
-COPY ./settings/execution.ini /usr/local/etc/php/conf.d/execution.ini
-COPY ./settings/timezone.ini /usr/local/etc/php/conf.d/timezone.ini
+COPY ./settings/z-execution.ini /usr/local/etc/php/conf.d/z-execution.ini
+COPY ./settings/z-timezone.ini /usr/local/etc/php/conf.d/z-timezone.ini
