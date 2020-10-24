@@ -37,7 +37,7 @@ services:
       context: .
       dockerfile: ./72-apache/Dockerfile
       target: prodImage
-    image: silmaralberti/php:7.2-apache-dev
+    image: silmaralberti/php:7.2-apache-prod
   base74:
     build: 
       context: .
