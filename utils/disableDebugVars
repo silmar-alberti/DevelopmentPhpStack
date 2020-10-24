@@ -1,0 +1,4 @@
+#!/bin/bash 
+
+unset XDEBUG_CONFIG
+unset XDEBUG_SESSION_START

@@ -10,7 +10,9 @@ filesToInstall=(
     'composer'
     'kcacheGrid'
     'php56'
-    'php72'
+    'php72',
+    'disableDebugVars'
+    'enableDebugVars'
 )
 
 for file in ${filesToInstall[@]}
