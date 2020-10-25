@@ -4,28 +4,58 @@ services:
   base5:
     build: 
       context: .
-      dockerfile: ./56-apache-base/Dockerfile
+      dockerfile: ./56-apache/Dockerfile
+      target: baseImage
     image: silmaralberti/php:5.6-apache-base
   dev5:
     build: 
       context: .
-      dockerfile: ./56-apache-dev/Dockerfile
+      dockerfile: ./56-apache/Dockerfile
+      target: devImage
     image: silmaralberti/php:5.6-apache-dev
+  prod5:
+    build: 
+      context: .
+      dockerfile: ./56-apache/Dockerfile
+      target: prodImage
+    image: silmaralberti/php:5.6-apache-prod
+
   base7:
     build: 
       context: .
-      dockerfile: ./72-apache-base/Dockerfile
+      dockerfile: ./72-apache/Dockerfile
+      target: baseImage
     image: silmaralberti/php:7.2-apache-base
   dev7:
     build: 
       context: .
-      dockerfile: ./72-apache-dev/Dockerfile
+      dockerfile: ./72-apache/Dockerfile
+      target: devImage
     image: silmaralberti/php:7.2-apache-dev
   prod7:
     build: 
       context: .
-      dockerfile: ./72-apache-prod/Dockerfile
+      dockerfile: ./72-apache/Dockerfile
+      target: prodImage
     image: silmaralberti/php:7.2-apache-prod
+  base74:
+    build: 
+      context: .
+      dockerfile: ./74-apache/Dockerfile
+      target: baseImage
+    image: silmaralberti/php:7.4-apache-base
+  dev74:
+    build: 
+      context: .
+      dockerfile: ./74-apache/Dockerfile
+      target: devImage
+    image: silmaralberti/php:7.4-apache-dev
+  prod74:
+    build: 
+      context: .
+      dockerfile: ./74-apache/Dockerfile
+      target: prodImage
+    image: silmaralberti/php:7.4-apache-prod
   imagick7:
     build: 
       context: .

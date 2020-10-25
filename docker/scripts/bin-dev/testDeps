@@ -1,0 +1,56 @@
+#!/bin/bash
+set -e
+
+requiredModules=(
+    'apcu'
+    'curl'
+    'date'
+    'dom'
+    'fileinfo'
+    'filter'
+    'ftp'
+    'gd'
+    'hash'
+    'iconv'
+    'igbinary'
+    'json'
+    'libxml'
+    'mbstring'
+    'mysqli'
+    'mysqlnd'
+    'openssl'
+    'PDO'
+    'pdo_mysql'
+    'pdo_sqlite'
+    'Phar'
+    'posix'
+    'readline'
+    'redis'
+    'Reflection'
+    'session'
+    'SimpleXML'
+    'soap'
+    'SPL'
+    'sqlite3'
+    'timezonedb'
+    'xdebug'
+    'xml'
+    'xmlreader'
+    'xmlwriter'
+    'zip'
+    'Zend OPcache'
+    'zlib'
+)
+
+echo "loading modules ..."
+phpModules=$(php -m)
+
+IFS=""
+for module in ${requiredModules[@]}; do
+    if ! grep -ie "^${module}$" <<< $phpModules > /dev/null
+    then 
+        echo "module ${module} not found " >&2
+        exit 1
+    fi
+done
+echo "Deps OK"

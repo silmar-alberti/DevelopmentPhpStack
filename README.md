@@ -3,13 +3,9 @@ ___
 ### Description
 
 ### Features
+- PHP `5.6`, `7.2` and `7.4`
+- ever images own base, dev and prod variants 
 
-- PHP 5.6 apache environment
-- PHP 7.2 apache environment
-- PHP 5.6 apache dev environment (debug and profile tools)
-- PHP 7.2 apache dev environment (debug and profile tools)
-- PHP 7.2 apache prod environment
-- PHP 7.2 apache with imagick
 
 ### Dependencies
  - [Docker](https://docs.docker.com/install/) 
@@ -46,7 +42,7 @@ ___
     ``` SH
     bash ./start.sh
     ``` 
-    obs: this stript works in fedora 31. but not tested on another distribution or version.
+    obs: this stript works in fedora 31,32. but not tested on another distribution or version.
 
     This stript only make `./deploy/.env` file used in containers setup to redirect xdebug requests. **check that the firewall does not close port 9000.** 
 ___
@@ -74,9 +70,22 @@ See file ./deploy/docker-compose.yml and [nginx-proxy documentation](https://git
 ___
 ### Utils
 
- - This project also try abstract local php tools how commands: `php56`, `php72`, `composer` and `kCacheGrid`(xdebug profile analiser). 
+ - This project also try abstract local php tools how commands: `php56`, `php72`, `composer` and `kcacheGrid`(xdebug profile analyzer). 
  see command files on `./utils` folder
 
+#### Install nnative commands (linux only)
+1. To install php, composer and kcacheGrid run follow command:
+```SH
+sudo bash devPhpInstall
+```
+2. Enable debugCliSession 
+```SH
+source enableDebugVars
+```
+3. Disable debugCliSession 
+```SH
+source disableDebugVars
+```
 ___
 ### Used repositories 
 - [php](https://hub.docker.com/r/_/php)
