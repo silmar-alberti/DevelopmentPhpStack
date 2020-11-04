@@ -23,12 +23,14 @@ RUN apt-get update -y && \
     docker-php-ext-install \
         zip \
         opcache \
+        exif \
         soap \
         bcmath \
         mysqli \
         gd \
         pdo_mysql \
         imap \
+        sockets \
         && \
     pecl install timezonedb igbinary redis apcu apcu_bc imagick && \
     docker-php-ext-enable timezonedb igbinary redis apcu imagick && \

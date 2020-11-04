@@ -10,7 +10,8 @@ filesToInstall=(
     'composer'
     'kcacheGrid'
     'php56'
-    'php72',
+    'php72'
+    'php74'
     'disableDebugVars'
     'enableDebugVars'
 )

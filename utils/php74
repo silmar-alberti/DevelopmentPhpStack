@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+name=$(date | md5sum | awk '{print "php72-cli-"$1}')
+docker run -i --rm --name $name \
+  -v "$PWD":"$PWD" \
+  -w $PWD \
+  -e HOST_DOCKER_INTERNAL=$(hostname -I | awk '{print $1}') \
+  -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" \
+  -e XDEBUG_SESSION_START="${XDEBUG_SESSION_START}" \
+  --network "host" \
+  silmaralberti/php:7.4-apache-dev php "$@"
