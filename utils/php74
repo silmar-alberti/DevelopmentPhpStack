@@ -8,4 +8,5 @@ docker run -i --rm --name $name \
   -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" \
   -e XDEBUG_SESSION_START="${XDEBUG_SESSION_START}" \
   --network "host" \
+  --add-host=host.docker.internal:$(hostname -I | awk '{print $1}') \
   silmaralberti/php:7.4-apache-dev php "$@"
