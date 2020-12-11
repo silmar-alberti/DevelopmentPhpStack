@@ -4,7 +4,7 @@ services:
   apache-php5:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.php.rule=Host(`*.php5.localhost.com`)"
+      - "traefik.http.routers.php.rule=HostRegexp(`php5.localhost.com`, `{subdomain:[a-z0-9]+}.php5.localhost.com`)"
       - "traefik.http.routers.php.entrypoints=web"
     image: silmaralberti/php:5.6-apache-dev
     restart: unless-stopped
@@ -27,7 +27,7 @@ services:
   apache-php7:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.php.rule=Host(`*.php7.localhost.com`)"
+      - "traefik.http.routers.php.rule=HostRegexp(`php72.localhost.com`, `{subdomain:[a-z0-9]+}.php72.localhost.com`)"
       - "traefik.http.routers.php.entrypoints=web"
     image: silmaralberti/php:7.2-apache-dev
     restart: unless-stopped
@@ -50,8 +50,7 @@ services:
   apache-php74:
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.php.rule=Host(`middleware.php74.localhost.com`)"
-      # - "traefik.http.routers.php.rule=HostRegexp(`php74.localhost.com`, `{subdomain:[a-z0-9]+}.php74.localhost.com`)"
+      - "traefik.http.routers.php.rule=HostRegexp(`php74.localhost.com`, `{subdomain:[a-z0-9]+}.php74.localhost.com`)"
       - "traefik.http.routers.php.entrypoints=web"
     image: silmaralberti/php:7.4-apache-dev
     restart: unless-stopped
@@ -62,10 +61,10 @@ services:
       - /var/www:/var/www
       - ./php74-sites-enabled:/etc/apache2/sites-enabled
       - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
-    environment:
-      - VIRTUAL_HOST=*.php74.localhost.com
-      - VIRTUAL_PORT=80
-      - VIRTUAL_PROTO=http
+    # environment:
+    #   - VIRTUAL_HOST=*.php74.localhost.com
+    #   - VIRTUAL_PORT=80
+    #   - VIRTUAL_PROTO=http
     extra_hosts:
       - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
     networks:
