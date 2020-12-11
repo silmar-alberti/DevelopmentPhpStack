@@ -1,67 +1,157 @@
 version: "3"
 
 services:
-    apache-php5:
-        image: silmaralberti/php:5.6-apache-dev
-        restart: unless-stopped
-        ports:
-            - 80
-        volumes:
-            - /tmp/profiler:/tmp/profiler
-            - /var/www:/var/www
-            - ./php56-sites-enabled:/etc/apache2/sites-enabled
-            - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
-        environment:
-            - VIRTUAL_HOST=*.php5.localhost.com
-            - VIRTUAL_PORT=80
-            - VIRTUAL_PROTO=http
-        extra_hosts:
-            - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+  apache-php5:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.php.rule=Host(`*.php5.localhost.com`)"
+      - "traefik.http.routers.php.entrypoints=web"
+    image: silmaralberti/php:5.6-apache-dev
+    restart: unless-stopped
+    ports:
+      - 80
+    volumes:
+      - /tmp/profiler:/tmp/profiler
+      - /var/www:/var/www
+      - ./php56-sites-enabled:/etc/apache2/sites-enabled
+      - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
+    environment:
+      - VIRTUAL_HOST=*.php5.localhost.com
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+    extra_hosts:
+      - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+    networks:
+      - deploy-ingress
 
-    apache-php7:
-        image: silmaralberti/php:7.2-apache-dev
-        restart: unless-stopped
-        ports:
-            - 80
-        volumes:
-            - /tmp/profiler:/tmp/profiler
-            - /var/www:/var/www
-            - ./php72-sites-enabled:/etc/apache2/sites-enabled
-            - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
-        environment:
-            - VIRTUAL_HOST=*.php7.localhost.com
-            - VIRTUAL_PORT=80
-            - VIRTUAL_PROTO=http
-        extra_hosts:
-            - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
-    apache-php74:
-        image: silmaralberti/php:7.4-apache-dev
-        restart: unless-stopped
-        ports:
-            - 80
-        volumes:
-            - /tmp/profiler:/tmp/profiler
-            - /var/www:/var/www
-            - ./php74-sites-enabled:/etc/apache2/sites-enabled
-            - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
-        environment:
-            - VIRTUAL_HOST=*.php74.localhost.com
-            - VIRTUAL_PORT=80
-            - VIRTUAL_PROTO=http
-        extra_hosts:
-            - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+  apache-php7:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.php.rule=Host(`*.php7.localhost.com`)"
+      - "traefik.http.routers.php.entrypoints=web"
+    image: silmaralberti/php:7.2-apache-dev
+    restart: unless-stopped
+    ports:
+      - 80
+    volumes:
+      - /tmp/profiler:/tmp/profiler
+      - /var/www:/var/www
+      - ./php72-sites-enabled:/etc/apache2/sites-enabled
+      - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
+    environment:
+      - VIRTUAL_HOST=*.php7.localhost.com
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+    extra_hosts:
+      - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+    networks:
+      - deploy-ingress
 
-    nginx-proxy:
-        container_name: nginx-proxy
-        restart: always
-        image: jwilder/nginx-proxy
-        ports:
-            - "80:80"
-            - "443:443"
-        volumes:
-            - /var/run/docker.sock:/tmp/docker.sock:ro
-            - ./config.conf:/etc/nginx/conf.d/config.conf
-        environment:
-            - TZ=America/Sao_Paulo
-            
+  apache-php74:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.php.rule=Host(`middleware.php74.localhost.com`)"
+      # - "traefik.http.routers.php.rule=HostRegexp(`php74.localhost.com`, `{subdomain:[a-z0-9]+}.php74.localhost.com`)"
+      - "traefik.http.routers.php.entrypoints=web"
+    image: silmaralberti/php:7.4-apache-dev
+    restart: unless-stopped
+    ports:
+      - 80
+    volumes:
+      - /tmp/profiler:/tmp/profiler
+      - /var/www:/var/www
+      - ./php74-sites-enabled:/etc/apache2/sites-enabled
+      - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
+    environment:
+      - VIRTUAL_HOST=*.php74.localhost.com
+      - VIRTUAL_PORT=80
+      - VIRTUAL_PROTO=http
+    extra_hosts:
+      - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+    networks:
+      - deploy-ingress
 
+  traefik:
+    image: "traefik:v2.3"
+    container_name: "traefik"
+    restart: unless-stopped
+    command:
+      #- "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.webs.address=:443"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - deploy-ingress
+      # - internal
+
+  # nginx-proxy:
+  #   privileged:
+  #   container_name: nginx-proxy
+  #   restart: unless-stopped
+  #   image: jwilder/nginx-proxy
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   volumes:
+  #     - /var/run/docker.sock:/tmp/docker.sock:ro
+  #     - ./config.conf:/etc/nginx/conf.d/config.conf
+  #   environment:
+  #     - TZ=America/Sao_Paulo
+  #   networks:
+  #     - internal
+  #     - deploy-ingress
+
+  phpmyadmin:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.phpmyadmin.rule=Host(`phpmyadmin.localhost.com`)"
+      - "traefik.http.routers.phpmyadmin.entrypoints=web"
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-dev
+    restart: unless-stopped
+    environment:
+      PMA_ARBITRARY: 0
+      PMA_HOST: database
+    ports:
+      - 80
+    networks:
+      - deploy-ingress
+      # - deploy-database
+
+  database:
+    image: mariadb
+    container_name: mariadb-deploy
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: "defaultDb"
+      # # So you don't have to use root, but you can if you like
+      MYSQL_USER: "defaultDb"
+      # You can use whatever password you like
+      MYSQL_PASSWORD: "root"
+      # Password for root access
+      MYSQL_ROOT_PASSWORD: "root"
+    volumes:
+      - "banco_mysql_deploy:/var/lib/mysql"
+      - "./mysql.d/devconf.cnf:/etc/mysql/conf.d/mysql.cnf"
+    ports:
+      - 3306
+      - 3306:3306
+    networks:
+      - deploy-ingress
+      # - deploy-database
+
+volumes:
+  banco_mysql_deploy:
+
+networks:
+  deploy-ingress:
+    driver: bridge
+  # deploy-database:
