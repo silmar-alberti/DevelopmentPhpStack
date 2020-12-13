@@ -50,8 +50,8 @@ ___
 
 #### Request forward
 
-- This project use nginx-proxy to forward requests to both environments. 
-See file ./deploy/docker-compose.yml and [nginx-proxy documentation](https://github.com/nginx-proxy/nginx-proxy)
+- This project use traefik-proxy to forward requests to both environments. 
+See file ./deploy/docker-compose.yml and [traefik-proxy documentation](https://doc.traefik.io/traefik/)
 
 #### Xdebug debug 
 - Check `deploy/.env` content, 
@@ -89,7 +89,7 @@ source disableDebugVars
 ___
 ### Used repositories 
 - [php](https://hub.docker.com/r/_/php)
-- [jwilder/nginx-proxy](https://hub.docker.com/r/jwilder/nginx-proxy/)
+- [traefik-proxy](https://doc.traefik.io/traefik/)
 - [quetzacoalt/kcachegrind](https://hub.docker.com/r/quetzacoalt/kcachegrind)
 - [tini](https://github.com/krallin/tini)
 
