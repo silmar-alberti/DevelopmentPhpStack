@@ -17,3 +17,9 @@ tmp_table_size = 512M
 max_heap_table_size = 384M
 innodb_buffer_pool_size= 512M
 innodb_thread_concurrency=4
+
+innodb_strict_mode=OFF
+innodb_log_file_size = 2G
+innodb_log_buffer_size = 512M
+innodb_file_format = Barracuda
+max_allowed_packet = 1G
