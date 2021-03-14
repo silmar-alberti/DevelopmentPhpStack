@@ -11,7 +11,7 @@ echo "
 
 composeFile=docker/docker-compose.yml
 
-# docker-compose -f $composeFile build
+docker-compose -f $composeFile build
 listImages=($(sed -nr 's/image: *(.+)/\1/p' $composeFile))
 
 testFail=0
@@ -27,6 +27,12 @@ echo "
 IFS=""
 for imageTag in ${listImages[@]}
 do
+
+    if [[ ! "${imageTag}" =~ .*-dev.* ]] ; then
+        echo "ignore image ${imageTag}"
+        continue
+    fi
+
     testCommand=testDeps
     if [[ "${imageTag}" =~ .*php:5\.6.* ]] ; then
         testCommand=testDeps56
