@@ -6,6 +6,93 @@ ___
 - PHP `5.6`, `7.2` and `7.4`
 - ever images own base, dev and prod variants 
 
+Instaled extensions greather than 7:
+- apcu
+- Core
+- ctype
+- curl
+- date
+- dom
+- fileinfo
+- filter
+- ftp
+- gd
+- hash
+- iconv
+- igbinary
+- json
+- libxml
+- mbstring
+- mysqli
+- mysqlnd
+- openssl
+- pcre
+- PDO
+- pdo_mysql
+- pdo_sqlite
+- Phar
+- posix
+- readline
+- redis
+- Reflection
+- session
+- SimpleXML
+- soap
+- sodium
+- SPL
+- sqlite3
+- standard
+- timezonedb
+- tokenizer
+- xdebug
+- xml
+- xmlreader
+- xmlwriter
+- Zend OPcache
+- zip
+- zlib
+
+Instaled extensions 5.6 version:
+- apcu
+- curl
+- date
+- dom
+- fileinfo
+- filter
+- ftp
+- gd
+- hash
+- iconv
+- igbinary
+- json
+- libxml
+- mbstring
+- mysqli
+- mysqlnd
+- openssl
+- PDO
+- pdo_mysql
+- pdo_sqlite
+- Phar
+- posix
+- readline
+- redis
+- Reflection
+- session
+- SimpleXML
+- soap
+- SPL
+- sqlite3
+- timezonedb
+- xdebug
+- xml
+- xmlreader
+- xmlwriter
+- zip
+- Zend Opcache
+- zlib
+
+
 
 ### Dependencies
  - [Docker](https://docs.docker.com/install/) 

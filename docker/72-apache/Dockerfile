@@ -1,7 +1,6 @@
 FROM php:7.2-apache as baseImage
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public 
-ENV APPLICATION_ENV 'production'
 ENV TZ 'America/Sao_Paulo' 
 
 COPY ./scripts/bin/* /usr/local/bin/
@@ -12,18 +11,30 @@ RUN apt-get update -y && \
         libzip-dev \
         libxml2-dev \
         libpng-dev \
-        && \
+        # imap
+        libc-client-dev \
+        libkrb5-dev \
+        # imagick
+        libmagickwand-dev \
+        --no-install-recommends  && \
     apt-get clean && \
     docker-php-ext-configure zip --with-libzip && \
+    docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
     docker-php-ext-install \
         zip \
         opcache \
+        exif \
         soap \
+        bcmath \
+        imap \
         mysqli \
         gd \
-        pdo_mysql && \
-    pecl install timezonedb igbinary redis apcu apcu_bc && \
-    docker-php-ext-enable timezonedb igbinary redis apcu && \
+        pdo_mysql \
+        imap \
+        sockets \
+        && \
+    pecl install timezonedb igbinary redis apcu apcu_bc imagick && \
+    docker-php-ext-enable timezonedb igbinary redis apcu imagick && \
     a2enmod rewrite && \
     chmod +x /usr/local/bin/*
 
@@ -44,7 +55,7 @@ RUN pecl install xdebug && \
     chmod +x /usr/local/bin/entrypoint && \
     mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"
 
-COPY ./settings/z-xdebug.ini /usr/local/etc/php/conf.d/z-xdebug.ini
+COPY ./settings/z-xdebug3.ini /usr/local/etc/php/conf.d/z-xdebug.ini
 COPY ./settings/z-opcache-dev.ini /usr/local/etc/php/conf.d/z-opcache.ini
 
 ENTRYPOINT ["/tini", "--"]

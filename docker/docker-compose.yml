@@ -32,6 +32,12 @@ services:
       dockerfile: ./72-apache/Dockerfile
       target: devImage
     image: silmaralberti/php:7.2-apache-dev
+  dev-imagick7:
+    build: 
+      context: .
+      dockerfile: ./72-apache/Dockerfile
+      target: prodImage
+    image: silmaralberti/php:7.2-apache-imagick-dev
   prod7:
     build: 
       context: .
@@ -56,9 +62,4 @@ services:
       dockerfile: ./74-apache/Dockerfile
       target: prodImage
     image: silmaralberti/php:7.4-apache-prod
-  imagick7:
-    build: 
-      context: .
-      dockerfile: ./72-apache-imagick/Dockerfile
-    image: silmaralberti/php:7.2-apache-imagick
 
