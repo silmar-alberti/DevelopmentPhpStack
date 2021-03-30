@@ -63,6 +63,7 @@ Instaled extensions 5.6 version:
 - gd
 - hash
 - iconv
+- imap
 - igbinary
 - json
 - libxml
