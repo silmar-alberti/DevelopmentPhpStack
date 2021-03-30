@@ -26,6 +26,8 @@ services:
       - "traefik.enable=true"
       - "traefik.http.routers.php72.rule=HostRegexp(`php72.localhost.com`, `{subdomain:[a-z0-9]+}.php72.localhost.com`)"
       - "traefik.http.routers.php72.entrypoints=web"
+      - "traefik.http.routers.php-auryn.rule=HostRegexp(`photobookfinal.com`, `{subdomain:[a-z0-9]+}.photobookfinal.com`)"
+      - "traefik.http.routers.php-auryn.entrypoints=web"
     image: silmaralberti/php:7.2-apache-dev
     restart: unless-stopped
     ports:
@@ -39,8 +41,9 @@ services:
     extra_hosts:
       - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
     networks:
-      - deploy-ingress
-
+      deploy-ingress:
+        aliases: 
+          - fotogea.photobookfinal.com
   apache-php74:
     labels:
       - "traefik.enable=true"
@@ -58,7 +61,9 @@ services:
     extra_hosts:
       - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
     networks:
-      - deploy-ingress
+      deploy-ingress:
+        aliases:
+          - middleware.php74.localhost.com
 
   traefik:
     image: "traefik:v2.3"

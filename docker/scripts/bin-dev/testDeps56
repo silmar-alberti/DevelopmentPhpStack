@@ -12,6 +12,7 @@ requiredModules=(
     'gd'
     'hash'
     'iconv'
+    'imap'
     'igbinary'
     'json'
     'libxml'

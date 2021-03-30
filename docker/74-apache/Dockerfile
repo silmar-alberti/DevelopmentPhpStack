@@ -32,7 +32,6 @@ RUN apt-get update -y && \
         mysqli \
         gd \
         pdo_mysql \
-        imap \
         sockets \
         && \
     pecl install timezonedb igbinary apcu apcu_bc redis imagick && \
