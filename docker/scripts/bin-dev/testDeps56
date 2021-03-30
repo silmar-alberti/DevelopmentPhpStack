@@ -3,8 +3,6 @@ set -e
 
 requiredModules=(
     'apcu'
-    'bcmath'
-    'exif'
     'curl'
     'date'
     'dom'
@@ -33,7 +31,6 @@ requiredModules=(
     'session'
     'SimpleXML'
     'soap'
-    'sockets'
     'SPL'
     'sqlite3'
     'timezonedb'

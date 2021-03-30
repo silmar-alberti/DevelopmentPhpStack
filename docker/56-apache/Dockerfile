@@ -10,7 +10,16 @@ COPY ./scripts/bin/* /usr/local/bin/
 RUN a2enmod rewrite
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install -y libxml2-dev libpng-dev zlib1g-dev zip libzip-dev && \
+    apt-get install -y \
+        # imap
+        libc-client-dev \
+        libkrb5-dev \
+        libxml2-dev \
+        libpng-dev \
+        zlib1g-dev \
+        zip \
+        libzip-dev \
+        && \
     docker-php-source extract \
     # igbinary
     && mkdir -p /usr/src/php/ext/igbinary \
@@ -20,7 +29,10 @@ RUN apt-get update -y && \
     && mkdir -p /usr/src/php/ext/redis \
     && curl -fsSL https://github.com/phpredis/phpredis/archive/$EXT_REDIS_VERSION.tar.gz | tar xvz -C /usr/src/php/ext/redis --strip 1 \
     && docker-php-ext-configure redis --enable-redis-igbinary \
-    && docker-php-ext-install redis \
+    #imap
+    && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
+    && docker-php-ext-configure redis --enable-redis-igbinary \
+    && docker-php-ext-install redis imap \
     # cleanup
     && docker-php-source delete
 

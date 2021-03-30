@@ -27,7 +27,18 @@ echo "
 IFS=""
 for imageTag in ${listImages[@]}
 do
-    if docker run --rm --entrypoint=testDeps "$imageTag" > /dev/null ; then
+
+    if [[ ! "${imageTag}" =~ .*-dev.* ]] ; then
+        echo "ignore image ${imageTag}"
+        continue
+    fi
+
+    testCommand=testDeps
+    if [[ "${imageTag}" =~ .*php:5\.6.* ]] ; then
+        testCommand=testDeps56
+    fi
+
+    if docker run --rm --entrypoint="${testCommand}" "$imageTag" > /dev/null ; then
         echo "TEST PASS: '${imageTag}'"
     else
         testFail=1
