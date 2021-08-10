@@ -62,4 +62,16 @@ services:
       dockerfile: ./74-apache/Dockerfile
       target: prodImage
     image: silmaralberti/php:7.4-apache-prod
+  dev80:
+    build: 
+      context: .
+      dockerfile: ./80-apache/Dockerfile
+      target: dev-image
+    image: silmaralberti/php:8.0-apache-dev
+  prod80:
+    build: 
+      context: .
+      dockerfile: ./80-apache/Dockerfile
+      target: prod-image
+    image: silmaralberti/php:8.0-apache-prod
 
