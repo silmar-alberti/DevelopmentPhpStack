@@ -34,8 +34,8 @@ RUN apt-get update -y && \
         pdo_mysql \
         sockets \
         && \
-    pecl install timezonedb igbinary redis imagick && \
-    docker-php-ext-enable timezonedb igbinary  redis imagick && \
+    pecl install apcu timezonedb igbinary redis imagick && \
+    docker-php-ext-enable apcu timezonedb igbinary  redis imagick && \
     a2enmod rewrite && \ 
     chmod +x /usr/local/bin/*
 

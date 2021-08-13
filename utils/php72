@@ -1,6 +1,6 @@
 #!/bin/bash
 
-HOST=$(hostname -I | awk '{print $1}')
+HOST=$(hostname -I 2>/dev/null | awk '{print $1}')
 CMD_HOST=""
 if [[ $HOST ]]; then
     CMD_HOST="--add-host=host.docker.internal:$HOST"
