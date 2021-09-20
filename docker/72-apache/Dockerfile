@@ -1,4 +1,4 @@
-FROM php:7.2-apache as baseImage
+FROM php:7.2-apache as base-image
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public 
 ENV TZ 'America/Sao_Paulo' 
@@ -40,7 +40,7 @@ RUN apt-get update -y && \
 COPY ./settings/z-execution.ini /usr/local/etc/php/conf.d/z-execution.ini
 COPY ./settings/z-timezone.ini /usr/local/etc/php/conf.d/z-timezone.ini
 
-FROM baseImage as devImage
+FROM base-image as dev-image
 ENV TINI_VERSION v0.19.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 COPY ./scripts/bin/* /usr/local/bin/
@@ -61,6 +61,6 @@ ENTRYPOINT ["/tini", "--"]
 CMD ["entrypoint", "apache2-foreground"]
 
 
-FROM baseImage as prodImage
+FROM base-image as prod-image
 RUN  mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY ./settings/z-opcache-prod.ini /usr/local/etc/php/conf.d/z-opcache.ini
