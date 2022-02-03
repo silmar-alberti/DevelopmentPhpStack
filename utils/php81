@@ -1,5 +1,4 @@
 #!/bin/bash 
-name=$(date | md5sum | awk '{print "php56-cli-"$1}')
 
 HOST=$(hostname -I 2>/dev/null | awk '{print $1}')
 CMD_HOST=""
@@ -14,11 +13,12 @@ if [[ "$1" == "bash" ]]; then
     USE_TTY="t"
 fi
 
-docker run -i${USE_TTY} --rm --name $name \
+name=$(date | md5sum | awk '{print "php72-cli-"$1}')
+docker run -i$USE_TTY --rm --name $name \
   -v "$PWD":"$PWD" \
   -w $PWD \
   -e XDEBUG_CONFIG="${XDEBUG_CONFIG}" \
   -e XDEBUG_SESSION_START="${XDEBUG_SESSION_START}" \
   --network "host" \
   $CMD_HOST \
-  silmaralberti/php:5.6-apache-dev $COMMAND
+  silmaralberti/php:8.1-apache-dev $COMMAND

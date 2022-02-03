@@ -1,4 +1,4 @@
-FROM php:7.4-apache as base-image
+FROM php:8.1-apache as base-image
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public 
 ENV APPLICATION_ENV 'production'
@@ -22,7 +22,7 @@ RUN apt-get update -y && \
     apt-get clean && \
     docker-php-ext-configure zip && \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
-    docker-php-ext-install \
+    docker-php-ext-install -j$(nproc) \
         zip \
         opcache \
         exif \
@@ -32,10 +32,11 @@ RUN apt-get update -y && \
         mysqli \
         gd \
         pdo_mysql \
+        # TODO: install sockets 
         # sockets \
         && \
-    pecl install timezonedb igbinary apcu apcu_bc redis imagick && \
-    docker-php-ext-enable timezonedb igbinary apcu redis imagick && \
+    pecl install apcu timezonedb igbinary redis imagick opcache && \
+    docker-php-ext-enable apcu timezonedb igbinary  redis imagick opcache && \
     a2enmod rewrite && \ 
     chmod +x /usr/local/bin/*
 

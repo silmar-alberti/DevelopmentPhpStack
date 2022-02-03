@@ -13,6 +13,7 @@ filesToInstall=(
     'php72'
     'php74'
     'php80'
+    'php81'
     'disableDebugVars'
     'enableDebugVars'
 )
@@ -26,7 +27,7 @@ do
     ln -sf "${originFilePath}" "${destFilePath}"
 done
 
-ln -sf "${INSTALL_DIR}/php80" "${INSTALL_DIR}/php"
+ln -sf "${INSTALL_DIR}/php81" "${INSTALL_DIR}/php"
 
 echo "
 --------------------------------------------------

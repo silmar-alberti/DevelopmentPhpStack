@@ -22,7 +22,7 @@ RUN apt-get update -y && \
     apt-get clean && \
     docker-php-ext-configure zip && \
     docker-php-ext-configure imap --with-kerberos --with-imap-ssl && \
-    docker-php-ext-install \
+    docker-php-ext-install -j$(nproc) \
         zip \
         opcache \
         exif \
@@ -32,10 +32,10 @@ RUN apt-get update -y && \
         mysqli \
         gd \
         pdo_mysql \
-        sockets \
+        # sockets \
         && \
-    pecl install apcu timezonedb igbinary redis imagick && \
-    docker-php-ext-enable apcu timezonedb igbinary  redis imagick && \
+    pecl install opcache apcu timezonedb igbinary redis imagick && \
+    docker-php-ext-enable apcu timezonedb igbinary  redis imagick opcache && \
     a2enmod rewrite && \ 
     chmod +x /usr/local/bin/*
 
