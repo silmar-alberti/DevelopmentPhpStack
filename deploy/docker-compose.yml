@@ -17,7 +17,7 @@ services:
       - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
 
     extra_hosts:
-      - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+      - host.docker.internal:host-gateway
     networks:
       - deploy-ingress
 
@@ -39,11 +39,10 @@ services:
       - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
   
     extra_hosts:
-      - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+      - host.docker.internal:host-gateway
     networks:
       deploy-ingress:
-        aliases: 
-          - fotogea.photobookfinal.com
+        
   apache-php74:
     labels:
       - "traefik.enable=true"
@@ -59,11 +58,9 @@ services:
       - ./php74-sites-enabled:/etc/apache2/sites-enabled
       - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
     extra_hosts:
-      - "host.docker.internal:${HOST_DOCKER_INTERNAL}"
+      - host.docker.internal:host-gateway
     networks:
       deploy-ingress:
-        aliases:
-          - middleware.php74.localhost.com
 
   traefik:
     image: "traefik:v2.3"
