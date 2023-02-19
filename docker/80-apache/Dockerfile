@@ -32,7 +32,7 @@ RUN apt-get update -y && \
         mysqli \
         gd \
         pdo_mysql \
-        # sockets \
+        sockets \
         && \
     pecl install opcache apcu timezonedb igbinary redis imagick && \
     docker-php-ext-enable apcu timezonedb igbinary  redis imagick opcache && \

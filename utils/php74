@@ -7,7 +7,7 @@ if [[ "$1" == "bash" ]]; then
     USE_TTY="t"
 fi
 
-name=$(date | md5sum | awk '{print "php72-cli-"$1}')
+name=$(date | md5sum | awk '{print "php74-cli-"$1}')
 docker run -i$USE_TTY --rm --name $name \
   -v "$PWD":"$PWD" \
   -w $PWD \

@@ -62,6 +62,44 @@ services:
     networks:
       deploy-ingress:
 
+  apache-php80:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.php80.rule=HostRegexp(`php80.localhost.com`, `{subdomain:[a-z0-9]+}.php80.localhost.com`)"
+      - "traefik.http.routers.php80.entrypoints=web"
+    image: silmaralberti/php:8.0-apache-dev
+    restart: unless-stopped
+    ports:
+      - 80
+    volumes:
+      - /tmp/profiler:/tmp/profiler
+      - /var/www:/var/www
+      - ./php80-sites-enabled:/etc/apache2/sites-enabled
+      - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      deploy-ingress:
+
+  apache-php81:
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.php81.rule=HostRegexp(`php81.localhost.com`, `{subdomain:[a-z0-9]+}.php81.localhost.com`)"
+      - "traefik.http.routers.php81.entrypoints=web"
+    image: silmaralberti/php:8.1-apache-dev
+    restart: unless-stopped
+    ports:
+      - 80
+    volumes:
+      - /tmp/profiler:/tmp/profiler
+      - /var/www:/var/www
+      - ./php81-sites-enabled:/etc/apache2/sites-enabled
+      - ./custom.ini:/usr/local/etc/php/conf.d/zz-custom.ini
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      deploy-ingress:
+
   traefik:
     image: "traefik:v2.3"
     container_name: "traefik"

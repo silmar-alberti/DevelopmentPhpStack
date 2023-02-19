@@ -58,7 +58,7 @@ RUN chmod +x /tini && chmod +x /usr/local/bin/*
 
 COPY ./settings/entrypoint.sh /usr/local/bin/entrypoint
 
-RUN pecl install xdebug && \
+RUN pecl install xdebug-2.9.2 && \
     docker-php-ext-enable xdebug && \
     chmod +x /usr/local/bin/entrypoint && \
     mv "$PHP_INI_DIR/php.ini-development" "$PHP_INI_DIR/php.ini"

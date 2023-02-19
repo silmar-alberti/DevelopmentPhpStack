@@ -1,4 +1,4 @@
-FROM php:8.1-apache as base-image
+FROM php:8.2-apache as base-image
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public 
 ENV APPLICATION_ENV 'production'
