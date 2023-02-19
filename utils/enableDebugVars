@@ -1,4 +1,21 @@
 #!/bin/bash 
 
-export XDEBUG_CONFIG="remote_enable=1 remote_mode=req remote_port=9000 remote_host=host.docker.internal xdebug.remote_connect_back=0" \
+# export XDEBUG_CONFIG="remote_enable=1 remote_mode=req remote_port=9003 remote_host=host.docker.internal xdebug.remote_connect_back=0" 
+export XDEBUG_CONFIG="xdebug.mode = debug,develop,profile,coverage
+xdebug.client_port = 9003
+xdebug.idekey = phpstorm
+xdebug.discover_client_host = true
+xdebug.client_host = host.docker.internal
+xdebug.start_with_request = trigger
+" 
 export XDEBUG_SESSION_START="start"
+
+echo '
+/--------------------------------------------------------------------------------------/
+/                                    ATTENTION                                         /
+/--------------------------------------------------------------------------------------/
+/   if you want use cli for Phpstorm ide you need to set server name configuration.    /
+/   run:                                                                               /
+/   `$ export PHP_IDE_CONFIG=serverName=blog.dev`                                      /
+/--------------------------------------------------------------------------------------/
+'

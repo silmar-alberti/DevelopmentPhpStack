@@ -1,4 +1,4 @@
-FROM php:5.6-apache as baseImage
+FROM php:5.6-apache as base-image
 
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public 
 ENV APPLICATION_ENV 'production'
@@ -54,7 +54,7 @@ COPY ./settings/z-timezone.ini /usr/local/etc/php/conf.d/z-timezone.ini
 
 
 
-FROM baseImage as devImage
+FROM base-image as dev-image
 
 COPY ./settings/entrypoint.sh /usr/local/bin/entrypoint
 
@@ -78,7 +78,7 @@ CMD ["entrypoint", "apache2-foreground"]
 
 
 
-FROM baseImage as prodImage
+FROM base-image as prod-image
 
 RUN  mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 COPY ./settings/z-opcache-prod.ini /usr/local/etc/php/conf.d/z-opcache.ini

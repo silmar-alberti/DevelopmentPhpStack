@@ -4,7 +4,7 @@ eval $(ssh-agent); \
   docker run --rm --interactive --tty \
   --name $name \
   --volume $PWD:/app \
-  --volume $HOME:$HOME \
+  --volume $HOME/composerHome:$HOME \
   --volume $SSH_AUTH_SOCK:/ssh-auth.sock \
   --volume /etc/passwd:/etc/passwd:ro \
   --volume /etc/group:/etc/group:ro \

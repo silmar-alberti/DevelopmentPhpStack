@@ -7,7 +7,7 @@ if [[ "$1" == "bash" ]]; then
     USE_TTY="t"
 fi
 
-name=$(date | md5sum | awk '{print "php74-cli-"$1}')
+name=$(date | md5sum | awk '{print "php81-cli-"$1}')
 docker run -i$USE_TTY --rm --name $name \
   -v "$PWD":"$PWD" \
   -w $PWD \
@@ -15,4 +15,4 @@ docker run -i$USE_TTY --rm --name $name \
   -e XDEBUG_SESSION_START="${XDEBUG_SESSION_START}" \
   --network "host" \
   --add-host=host.docker.internal:host-gateway \
-  silmaralberti/php:7.4-apache-dev $COMMAND
+  silmaralberti/php:8.1-apache-dev $COMMAND

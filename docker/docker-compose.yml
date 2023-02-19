@@ -5,61 +5,79 @@ services:
     build: 
       context: .
       dockerfile: ./56-apache/Dockerfile
-      target: baseImage
+      target: base-image
     image: silmaralberti/php:5.6-apache-base
   dev5:
     build: 
       context: .
       dockerfile: ./56-apache/Dockerfile
-      target: devImage
+      target: dev-image
     image: silmaralberti/php:5.6-apache-dev
   prod5:
     build: 
       context: .
       dockerfile: ./56-apache/Dockerfile
-      target: prodImage
+      target: prod-image
     image: silmaralberti/php:5.6-apache-prod
-
-  base7:
-    build: 
-      context: .
-      dockerfile: ./72-apache/Dockerfile
-      target: baseImage
-    image: silmaralberti/php:7.2-apache-base
   dev7:
     build: 
       context: .
       dockerfile: ./72-apache/Dockerfile
-      target: devImage
+      target: dev-image
     image: silmaralberti/php:7.2-apache-dev
-  dev-imagick7:
-    build: 
-      context: .
-      dockerfile: ./72-apache/Dockerfile
-      target: prodImage
-    image: silmaralberti/php:7.2-apache-imagick-dev
   prod7:
     build: 
       context: .
       dockerfile: ./72-apache/Dockerfile
-      target: prodImage
+      target: prod-image
     image: silmaralberti/php:7.2-apache-prod
-  base74:
-    build: 
-      context: .
-      dockerfile: ./74-apache/Dockerfile
-      target: baseImage
-    image: silmaralberti/php:7.4-apache-base
   dev74:
     build: 
       context: .
       dockerfile: ./74-apache/Dockerfile
-      target: devImage
+      target: dev-image
     image: silmaralberti/php:7.4-apache-dev
   prod74:
     build: 
       context: .
       dockerfile: ./74-apache/Dockerfile
-      target: prodImage
+      target: prod-image
     image: silmaralberti/php:7.4-apache-prod
+  dev80:
+    build: 
+      context: .
+      dockerfile: ./80-apache/Dockerfile
+      target: dev-image
+    image: silmaralberti/php:8.0-apache-dev
+  prod80:
+    build: 
+      context: .
+      dockerfile: ./80-apache/Dockerfile
+      target: prod-image
+    image: silmaralberti/php:8.0-apache-prod
+  dev81:
+    build: 
+      context: .
+      dockerfile: ./81-apache/Dockerfile
+      target: dev-image
+    image: silmaralberti/php:8.1-apache-dev
+  prod81:
+    build: 
+      context: .
+      dockerfile: ./81-apache/Dockerfile
+      target: prod-image
+    image: silmaralberti/php:8.1-apache-prod
+
+  dev82:
+    build: 
+      context: .
+      dockerfile: ./82-apache/Dockerfile
+      target: dev-image
+    image: silmaralberti/php:8.2-apache-dev
+  prod82:
+    build: 
+      context: .
+      dockerfile: ./82-apache/Dockerfile
+      target: prod-image
+    image: silmaralberti/php:8.2-apache-prod
 
