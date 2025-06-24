@@ -1,5 +1,5 @@
 #!/bin/bash 
-name=$(date | md5sum | awk '{print "php56-cli-"$1}')
+name=$(date | md5sum | awk '{print "php84-cli-"$1}')
 
 COMMAND="php $@"
 USE_TTY=""

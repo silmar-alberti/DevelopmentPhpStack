@@ -81,3 +81,16 @@ services:
       target: prod-image
     image: silmaralberti/php:8.2-apache-prod
 
+  dev84:
+    build: 
+      context: .
+      dockerfile: ./84-apache/Dockerfile
+      target: dev-image
+    image: silmaralberti/php:8.4-apache-dev
+  prod84:
+    build: 
+      context: .
+      dockerfile: ./84-apache/Dockerfile
+      target: prod-image
+    image: silmaralberti/php:8.4-apache-prod
+
